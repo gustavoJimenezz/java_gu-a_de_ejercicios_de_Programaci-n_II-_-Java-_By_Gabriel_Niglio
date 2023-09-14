@@ -1,6 +1,7 @@
-Guía de ejercicios de Programación II (Java) By Gabriel Niglio
+# Guía de ejercicios de Programación II (Java) By Gabriel Niglio
 
-1 OBJETOS (SOLO ATRIBUTOS)
+## 1 OBJETOS (SOLO ATRIBUTOS)
+
 1.1 PERSONA
 Crear la clase Persona con nombre, apellido y edad. Ingresar sus datos por teclado y luego
 mostrarlos por pantalla.
@@ -22,7 +23,8 @@ Crear las clases:
 Una vez hecho esto, cargar ambos por teclado y luego mostrar todos los datos del más caro.
 
 
-2 MÉTODOS (SIN PARÁMETROS)
+## 2 MÉTODOS (SIN PARÁMETROS)
+
 2.1 ALUMNO
 Crear una clase Alumno con peso, nombre, altura, nota y edad.
 Crear un método que retorne D (Desaprobado), A (Aprobado) o P (Promocionado) en base a su
@@ -50,7 +52,8 @@ botella y si la tercera botella está llena.
 Próximamente…
 
 
-3 MÉTODOS (CON PARÁMETROS)
+## 3 MÉTODOS (CON PARÁMETROS)
+
 3.1 PEPE
 Crear la clase Pepe, el mismo tiene que tener un número preferido (Es el 21).
 A Pepe le gusta hacer cálculos y puede recibir un número y retornar el doble del mismo.
@@ -58,8 +61,8 @@ Pepe también puede recibir un número, elevarlo al cuadrado y retornarlo.
 Pepe también puede multiplicar el número que le brinden por su número preferido.
 Realizar un Main donde se ingrese un número por teclado y Pepe pueda presumir todas sus
 dotes matemáticas. (Mostrar el resultado de todos sus métodos por pantalla).
-3.2 AUTO
 
+3.2 AUTO
 Generar una clase Auto que tenga velocidad, tipo de turbo (A, B o C) y modelo.
 Generar un método que reciba una cantidad de minutos y muestre cuantos Kilómetros recorre
 en ese tiempo.
