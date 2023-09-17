@@ -25,9 +25,6 @@ import java.util.ArrayList;
 //la cantidad se tiene que mostrar cuanto ganó la tienda por esta última venta.
 
 public class Main {
-	
-//	crear dos versiones
-//	mostrar todos los datos en esta version
 
 //		seleccionar producto
 //		ingresar cantidad

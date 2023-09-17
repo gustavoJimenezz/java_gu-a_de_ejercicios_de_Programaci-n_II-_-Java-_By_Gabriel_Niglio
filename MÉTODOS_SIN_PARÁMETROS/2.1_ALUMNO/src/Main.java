@@ -12,49 +12,46 @@ public class Main {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		ArrayList<Alumno> listaAlumnos = new ArrayList<>();
+		Alumno[] vecAlumnos = new Alumno[1];
 		Alumno primerAlumno = new Alumno();
-		listaAlumnos.add(primerAlumno);
 		Alumno segundoAlumno = new Alumno();
-		listaAlumnos.add(segundoAlumno);
-		
-		int contador1 = 0;		
-		for (Alumno alumno : listaAlumnos) {
-			contador1 ++;
-			System.out.println("ALUMNO "+ contador1);
-			System.out.print("Ingrese nombre : ");
-			alumno.nombre = sc.next();
-			
-			System.out.print("Ingrese edad : ");
-			alumno.edad = sc.nextInt();
-			
-			System.out.print("Ingrese altura : ");
-			alumno.altura = sc.nextDouble();
-			
-			System.out.print("Ingrese peso : ");
-			alumno.peso = sc.nextDouble();
-			
-			System.out.print("Ingrese nota : ");
-			alumno.nota = sc.nextDouble();
-			
-			System.out.println("\n");
+		vecAlumnos[0] = primerAlumno;
+		vecAlumnos[1] = segundoAlumno
 
+		for (int i = 0; i < 1; i++) {
+			System.out.println("ALUMNO "+ i);
+			System.out.print("Ingrese nombre : ");
+			vecAlumnos[i].nombre = sc.next();
+
+			System.out.print("Ingrese edad : ");
+			vecAlumnos[i].edad = sc.nextInt();
+
+			System.out.print("Ingrese altura : ");
+			vecAlumnos[i].altura = sc.nextDouble();
+
+			System.out.print("Ingrese peso : ");
+			vecAlumnos[i].peso = sc.nextDouble();
+
+			System.out.print("Ingrese nota : ");
+			vecAlumnos[i].nota = sc.nextDouble();
+
+			System.out.println("\n");
 		}
 
 		System.out.println("\n\n\n");
-		int contador2 = 0;			
 
-		for (Alumno alumno : listaAlumnos) {
+
+		for (int i = 0; i < 1; i++) {
 			contador2 ++;
 			DecimalFormat df = new DecimalFormat("#.####");
-			System.out.println("ALUMNO "+ contador2);
-			System.out.println("Nombre : " + alumno.nombre);
-			System.out.println("Eedad : "+ alumno.edad);
-			System.out.println("Altura : "+ alumno.altura);
-			System.out.println("Peso : "+ alumno.peso);
-			System.out.println("Nota : "+ alumno.nota);
-			System.out.println("Resultado de Nota: "+ alumno.aprobadoDesaprobado());
-			System.out.println("Masa muscular: "+ df.format(alumno.indiceDeMasaMuscular()));
+			System.out.println("ALUMNO "+ i);
+			System.out.println("Nombre : " + vecAlumnos[i].nombre);
+			System.out.println("Eedad : "+ vecAlumnos[i].edad);
+			System.out.println("Altura : "+ vecAlumnos[i].altura);
+			System.out.println("Peso : "+ vecAlumnos[i].peso);
+			System.out.println("Nota : "+ vecAlumnos[i].nota);
+			System.out.println("Resultado de Nota: "+ vecAlumnos[i].aprobadoDesaprobado());
+			System.out.println("Masa muscular: "+ df.format(vecAlumnos[i].indiceDeMasaMuscular()));
 			
 			int jubilacionAlumno = alumno.jubilacion();
 			if(jubilacionAlumno < 0) {
