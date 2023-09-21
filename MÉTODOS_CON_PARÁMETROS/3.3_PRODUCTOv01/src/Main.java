@@ -107,7 +107,7 @@ public class Main {
 		System.out.println("\n\n");
 		
 		for (Venta ventaActual: carrito) {
-//			IFNORME
+//			INFORME
 			Producto auxProd = ventaActual.getProductoActual();
 			int unidades = ventaActual.getCantidad();
 		
