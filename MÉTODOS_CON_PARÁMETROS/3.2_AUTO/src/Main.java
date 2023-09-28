@@ -13,7 +13,8 @@ public class Main {
 		Auto primerAuto = new Auto("Corolla", 180, 'A');
 		Auto segundoAuto = new Auto("Mustang", 250, 'B');
 		Auto tercerAuto = new Auto("Model S", 250, 'C');
-		int minutos = 5;
+//		double?
+		double minutos = 5;
 		
 		double kilometrosRecorridos1 = primerAuto.kilometroRecorridoPorMinutos(minutos);
 		double kilometrosRecorridos2 = segundoAuto.kilometroRecorridoPorMinutos(minutos);

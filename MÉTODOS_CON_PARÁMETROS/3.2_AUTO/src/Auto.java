@@ -43,9 +43,9 @@ public class Auto {
 		this.tipoTurbo = tipoTurbo;
 	}
 
-    public double kilometroRecorridoPorMinutos(int minutos) {
+    public double kilometroRecorridoPorMinutos(double minutos) {
 //    	Generar un método que reciba una cantidad de minutos y muestre cuantos Kilómetros recorre en ese tiempo.
-    	
+
     	double kilometroRecorrido = 0;
     	if(minutos > 0) {    		
     		double minutosDeHoras = minutos / 60.0;
