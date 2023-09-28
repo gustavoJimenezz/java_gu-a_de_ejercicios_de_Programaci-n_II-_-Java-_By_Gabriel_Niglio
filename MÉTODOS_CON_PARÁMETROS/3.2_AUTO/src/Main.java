@@ -15,19 +15,18 @@ public class Main {
 		Auto tercerAuto = new Auto("Model S", 250, 'C');
 		int minutos = 5;
 		
-		double kilometrosRecorridos1 = primerAuto.kilometrosRecorridos(minutos);
-		double kilometrosRecorridos2 = segundoAuto.kilometrosRecorridos(minutos);
-		double kilometrosRecorridos3 = tercerAuto.kilometrosRecorridos(minutos);
+		double kilometrosRecorridos1 = primerAuto.kilometroRecorridoPorMinutos(minutos);
+		double kilometrosRecorridos2 = segundoAuto.kilometroRecorridoPorMinutos(minutos);
+		double kilometrosRecorridos3 = tercerAuto.kilometroRecorridoPorMinutos(minutos);
 		
 		System.out.println("Mostrar que tan lejos llegó cada auto");
-		System.out.println(primerAuto.getModelo() + " recorre " + kilometrosRecorridos1 + " Kilometros en " + minutos);
-		System.out.println(segundoAuto.getModelo() + " recorre " + kilometrosRecorridos2 + " Kilometros en " + minutos);
-		System.out.println(tercerAuto.getModelo() + " recorre " + kilometrosRecorridos3 + " Kilometros en " + minutos);
+		System.out.println(primerAuto.getModelo() + " recorre " + kilometrosRecorridos1 + " Kilometros en " + minutos + " minutos");
+		System.out.println(segundoAuto.getModelo() + " recorre " + kilometrosRecorridos2 + " Kilometros en " + minutos + " minutos");
+		System.out.println(tercerAuto.getModelo() + " recorre " + kilometrosRecorridos3 + " Kilometros en " + minutos + " minutos");
 		System.out.println("");
-		System.out.println(primerAuto.getModelo() + " con turbo recorreria " + kilometrosRecorridos1 + " Kilometros en " + primerAuto.calcularMinutosPorKilometroTurbo(kilometrosRecorridos1) + " minutos");
-		System.out.println(segundoAuto.getModelo() + " con turbo recorreria " + kilometrosRecorridos2 + " Kilometros en " + segundoAuto.calcularMinutosPorKilometroTurbo(kilometrosRecorridos2) + " minutos");
-		System.out.println(tercerAuto.getModelo() + " con turbo recorreria " + kilometrosRecorridos3 + " Kilometros en " + tercerAuto.calcularMinutosPorKilometroTurbo(kilometrosRecorridos3) + " minutos");
+		System.out.println(primerAuto.getModelo() + " con turbo recorre " + kilometrosRecorridos1 + " Kilometros en " + primerAuto.carcularTiempoConTurbo(kilometrosRecorridos1) + " minutos");
+		System.out.println(segundoAuto.getModelo() + " con turbo recorre " + kilometrosRecorridos2 + " Kilometros en " + segundoAuto.carcularTiempoConTurbo(kilometrosRecorridos2) + " minutos");
+		System.out.println(tercerAuto.getModelo() + " con turbo recorre " + kilometrosRecorridos3 + " Kilometros en " + tercerAuto.carcularTiempoConTurbo(kilometrosRecorridos3) + " minutos");
 		
 	}
-
 }

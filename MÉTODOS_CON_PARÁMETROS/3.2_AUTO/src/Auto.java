@@ -9,9 +9,9 @@
 
 public class Auto {
 	
-	private String modelo;
 	private double velocidadKmph;
 	private char tipoTurbo;
+	private String modelo;
 	
 	Auto(String modelo, double velocidadKmph, char tipoTurbo){
 		this.modelo = modelo;
@@ -43,30 +43,42 @@ public class Auto {
 		this.tipoTurbo = tipoTurbo;
 	}
 
-    public double kilometrosRecorridos(int minutos) {
-        double minutosDeHoras = minutos / 60.0;
-        return  this.getVelocidadKmph() * minutosDeHoras; 
+    public double kilometroRecorridoPorMinutos(int minutos) {
+//    	Generar un método que reciba una cantidad de minutos y muestre cuantos Kilómetros recorre en ese tiempo.
+    	
+    	double kilometroRecorrido = 0;
+    	if(minutos > 0) {    		
+    		double minutosDeHoras = minutos / 60.0;
+    		kilometroRecorrido = this.getVelocidadKmph() * minutosDeHoras; 
+    	}
+        return kilometroRecorrido;
     }
 	
-    public double velocidadConTurbo() {
-    	
-    	double resultado = 0;
+    public double carcularTiempoConTurbo(double distanciaKm) {
+//    	Generar un método que reciba una cantidad de kilómetros y retorne en cuantos minutos los recorrería con turbo.
+   
+    	double min = 0;
+    	if(distanciaKm > 0) {    		
+    		double tiempoHoras = distanciaKm / this.velocidadConTurbo();
+    		min = tiempoHoras * 60;
+    	}
+    	return min;
+    }
+
+	public double velocidadConTurbo() {
+//		Generar un método que retorne cual es la velocidad que alcanza con turbo. 
+//		(Los tipo A son un 20% más rápidos con turbo, los tipo B un 32% y los tipo C un 51%).
+		
+    	double turbo = 0;
+
     	if( tipoTurbo == 'A') {
-    		resultado = (20 / 100.0) * this.getVelocidadKmph();
+    		turbo = (20 / 100.0) * this.getVelocidadKmph();
     	}else if( tipoTurbo == 'B') {
-    		resultado = (32 / 100.0) * this.getVelocidadKmph();
+    		turbo = (32 / 100.0) * this.getVelocidadKmph();
     	}else if( tipoTurbo == 'C') {
-    		resultado = (51 / 100.0) * this.getVelocidadKmph();
+    		turbo = (51 / 100.0) * this.getVelocidadKmph();
     	}
     	
-    	return this.getVelocidadKmph() + resultado;
-    }
-    
-    public double calcularMinutosPorKilometroTurbo(double k) {
-    	double tiempoHoras = k / this.velocidadConTurbo();
-//    	convertir a min
-    	return tiempoHoras * 60;
-    }
-    
-    
+    	return this.getVelocidadKmph() + turbo;
+    }  
 }
