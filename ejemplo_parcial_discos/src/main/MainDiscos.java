@@ -8,7 +8,7 @@ import model.MenuDiscos;
 
 //cargar
 //mostrar
-//buscar max min
+//buscar max/min
 //buscar grupo de ..
 
 public class MainDiscos {

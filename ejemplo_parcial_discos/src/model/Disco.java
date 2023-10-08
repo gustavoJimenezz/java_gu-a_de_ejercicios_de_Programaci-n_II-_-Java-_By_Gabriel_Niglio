@@ -4,13 +4,11 @@ public class Disco {
 	private String titulo;
 	private String autor;
 	private int numeroDePistas;
-//	private String[] listaCanciones;
 
 	public Disco(String titulo, String autor, int numeroDePistas) {
 		this.titulo = titulo;
 		this.autor = autor;
 		this.numeroDePistas = numeroDePistas;
-//		this.listaCanciones = listaCanciones;
 	}
 	
 	public String getTitulo() {

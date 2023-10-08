@@ -14,7 +14,7 @@ import model.Sube;
 //buscar grupo de ..
 //criterio especifico 
 //inyeccion de dependencia constructor/set
-//objetos anidados
+//objetos anidadosj
 
 public class MainPersona {
 	public static void main(String[] args) {
