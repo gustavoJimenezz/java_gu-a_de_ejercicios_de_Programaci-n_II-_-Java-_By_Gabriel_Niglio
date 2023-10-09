@@ -17,12 +17,12 @@ public class MenuDiscos {
 		System.out.println("** Biblioteca de discos **");
 		System.out.println("1 - Agregar nuevo Disco");
 		System.out.println("2 - mostrar discos");
-		System.out.println("3 - buscar disco por titulo");
+		System.out.println("3 - Buscar disco por titulo");
 		System.out.println("4 - Disco con menos pistas");
 		System.out.println("5 - Disco con mas pistas");
 		System.out.println("6 - Grupo de discos por autor");
-		System.out.println("7 - Eliminar disco");
-		System.out.println("0 - salir");
+		System.out.println("7 - Borrar disco");
+		System.out.println("0 - Salir");
 		System.out.print("Ingrese : ");
 		int opcionElegida = sc.nextInt();
 		return opcionElegida;
@@ -55,11 +55,11 @@ public class MenuDiscos {
 				this.borrarDisco(arrayDiscos, sc);
 				break;
 			case 0:
+				System.out.println("\nHasta pronto!\n");
 				seguir = false;
-				System.out.println("Hasta pronto !");
 				break;
 			default:
-				System.out.println("Opcion incorrecta");
+				System.out.println("\nOpcion incorrecta!\n");
 				break;
 			}
 
@@ -78,29 +78,6 @@ public class MenuDiscos {
 		arrayDiscos.add(nuevoDisco);
 	}
 
-	public void borrarDisco(ArrayList<Disco> arrayDiscos, Scanner sc) {
-		Disco auxDisc = null;
-		System.out.print("Ingrese titulo ; ");
-		String tituloBuscado = sc.next();
-		
-		for (Disco disco : arrayDiscos) {
-			String tituloActual = disco.getTitulo();
-			if (tituloActual.equals(tituloBuscado)) {
-				auxDisc = disco;
-			}
-		}
-		if (auxDisc != null) {
-			arrayDiscos.remove(auxDisc);
-			System.out.println();
-			System.out.println("Disco borrado con exito !");
-			System.out.println();
-		} else {
-			System.out.println();
-			System.out.println("No se encotro ningun disco !");
-			System.out.println();
-		}
-	}
-
 	public void mostrarDisco(Disco discoActual) {
 		System.out.println();
 		System.out.println("Titulo : " + discoActual.getTitulo());
@@ -110,80 +87,60 @@ public class MenuDiscos {
 	}
 
 	public void mostrarDiscos(ArrayList<Disco> arrayDiscos) {
-
-		if (this.arrayVacio(arrayDiscos)) {
+		if(!this.noHayDiscosQueMostrar(arrayDiscos)) {			
 			for (Disco disco : arrayDiscos) {
-				System.out.println();
 				this.mostrarDisco(disco);
-				System.out.println();
 			}
-		} else {
-			System.out.println();
-			System.out.println("No hay discos que mostra !");
-			System.out.println();
 		}
-
 	}
-
-	public boolean arrayVacio(ArrayList<Disco> arrayDiscos) {
-		return arrayDiscos.size() > 0;
-	}
+	
 
 	public void buscarDiscoPorTitulo(ArrayList<Disco> arrayDiscos, Scanner sc) {
 		Disco auxdisc = null;
 		System.out.print("Ingrese titulo ; ");
 		String tituloBuscado = sc.next();
-		for (Disco disco : arrayDiscos) {
-			String tituloActual = disco.getTitulo();
-			if (tituloActual.equals(tituloBuscado)) {
-				auxdisc = disco;
+		if (!this.noHayDiscosQueMostrar(arrayDiscos)) {	
+			for (Disco disco : arrayDiscos) {
+				String tituloActual = disco.getTitulo();
+				if (tituloActual.equals(tituloBuscado)) {
+					auxdisc = disco;
+				}
 			}
-		}
-		if (auxdisc != null) {
-			this.mostrarDisco(auxdisc);
-		} else {
-			System.out.println();
-			System.out.println("No se encontro el titulo ingresado. ");
-			System.out.println();
+	
+			if (!this.noHayDiscoQueMostrar(auxdisc)) {
+				this.mostrarDisco(auxdisc);
+			}
 		}
 	}
 
 	public void buscarDiscoConMenosPistas(ArrayList<Disco> arrayDiscos) {
-		Disco discAux = null;
-		if (this.arrayVacio(arrayDiscos)) {
-			discAux = arrayDiscos.get(0);
+		Disco auxdisc = null;
+		if (!this.noHayDiscosQueMostrar(arrayDiscos)) {
+			auxdisc = arrayDiscos.get(0);
 			for (Disco disco : arrayDiscos) {
-				if (disco.getNumeroDePistas() < discAux.getNumeroDePistas()) {
-					discAux = disco;
+				if (disco.getNumeroDePistas() < auxdisc.getNumeroDePistas()) {
+					auxdisc = disco;
 				}
 			}
+			if (!this.noHayDiscoQueMostrar(auxdisc)) {
+				this.mostrarDisco(auxdisc);
+			}
 		}
-		if (discAux != null) {
-			this.mostrarDisco(discAux);
-		} else {
-			System.out.println();
-			System.out.println("No hay discos que mostra !");
-			System.out.println();
-		}
+		
 	}
 
 	public void buscarDiscoConMasPistas(ArrayList<Disco> arrayDiscos) {
-		Disco discAux = null;
-		if (this.arrayVacio(arrayDiscos)) {
-			discAux = arrayDiscos.get(0);
+		Disco auxdisc = null;
+		if (!this.noHayDiscosQueMostrar(arrayDiscos)) {
+			auxdisc = arrayDiscos.get(0);
 			for (Disco disco : arrayDiscos) {
-				if (disco.getNumeroDePistas() > discAux.getNumeroDePistas()) {
-					discAux = disco;
+				if (disco.getNumeroDePistas() > auxdisc.getNumeroDePistas()) {
+					auxdisc = disco;
 				}
 			}
-		}
-		if (discAux != null) {
-			this.mostrarDisco(discAux);
-			;
-		} else {
-			System.out.println();
-			System.out.println("No hay discos que mostra !");
-			System.out.println();
+			if (!this.noHayDiscoQueMostrar(auxdisc)) {
+				this.mostrarDisco(auxdisc);
+			}
 		}
 	}
 
@@ -193,19 +150,51 @@ public class MenuDiscos {
 		String autor = sc.next();
 		
 		ArrayList<Disco> DiscosDeAutor = new ArrayList<>();
-		if (this.arrayVacio(arrayDiscos)) {
+		if (!this.noHayDiscosQueMostrar(arrayDiscos)) {
 			for (Disco disco : arrayDiscos) {
 				if (disco.getAutor().equals(autor)) {
 					DiscosDeAutor.add(disco);
 				}
 			}
+			if (!this.noHayDiscosQueMostrar(arrayDiscos)) {
+				this.mostrarDiscos(DiscosDeAutor);
+			}
 		}
-		if (DiscosDeAutor.size() == 0) {
-			this.mostrarDiscos(DiscosDeAutor);
-		} else {
-			System.out.println();
-			System.out.println("No se encotro ningun disco de " + autor);
-			System.out.println();
+	}
+	
+	public void borrarDisco(ArrayList<Disco> arrayDiscos, Scanner sc) {
+		Disco auxDisc = null;
+		System.out.print("Ingrese titulo ; ");
+		String tituloBuscado = sc.next();
+		if (!this.noHayDiscosQueMostrar(arrayDiscos)) {
+			for (Disco disco : arrayDiscos) {
+				String tituloActual = disco.getTitulo();
+				if (tituloActual.equals(tituloBuscado)) {
+					auxDisc = disco;
+				}
+			}
+			if (!this.noHayDiscoQueMostrar(auxDisc)) {
+				arrayDiscos.remove(auxDisc);
+				System.out.println("\nDisco borrado con exito !\n");
+			}
 		}
+	}
+	
+	private boolean noHayDiscosQueMostrar(ArrayList<Disco> arrayDiscos) {
+		boolean noHayDiscos = false;
+		if(arrayDiscos.size() == 0) {
+			System.out.println("\nNo se encontraron Discos!\n");
+			noHayDiscos = true;
+		}
+		return noHayDiscos;
+	}
+	
+	private boolean noHayDiscoQueMostrar(Disco discAux) {
+		boolean discoNull = false;
+		if(discAux == null) {
+			System.out.println("\nNo hay disco que mostrar!\n");
+			discoNull = true;
+		}
+		return discoNull;
 	}
 }
