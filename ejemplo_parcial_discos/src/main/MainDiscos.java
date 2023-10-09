@@ -3,8 +3,8 @@ package main;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import menuDisco.MenuDiscos;
 import model.Disco;
-import model.MenuDiscos;
 
 //cargar
 //mostrar
