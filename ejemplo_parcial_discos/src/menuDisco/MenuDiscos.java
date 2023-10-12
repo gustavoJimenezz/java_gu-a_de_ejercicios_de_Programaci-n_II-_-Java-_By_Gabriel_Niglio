@@ -13,7 +13,33 @@ import model.Disco;
 //eliminar
 
 public class MenuDiscos {
-	public int opciones(Scanner sc) {
+	private Scanner sc;
+	private ArrayList<Disco> arrayDiscos;
+	private boolean activo;
+
+	public MenuDiscos(Scanner sc, ArrayList<Disco> arrayDiscos) {
+		this.sc = sc;
+		this.arrayDiscos = arrayDiscos;
+		this.activo = true;
+	}
+
+	public boolean isActivo() {
+		return this.activo;
+	}
+
+	public void finalizar() {
+		this.activo = false;
+	}
+
+	public Scanner getSc() {
+		return sc;
+	}
+
+	public ArrayList<Disco> getArrayDiscos() {
+		return arrayDiscos;
+	}
+
+	public int menuPrincipal(Scanner sc) {
 		System.out.println("** Biblioteca de discos **");
 		System.out.println("1 - Agregar nuevo Disco");
 		System.out.println("2 - mostrar discos");
@@ -28,35 +54,39 @@ public class MenuDiscos {
 		return opcionElegida;
 	}
 
-	public void menuPrincipal(Scanner sc, ArrayList<Disco> arrayDiscos) {
-		boolean seguir = true;
-		while (seguir) {
-			int opcionElegida = this.opciones(sc);
+	public void iniciar() {
+
+		while (this.isActivo()) {
+			int opcionElegida = this.menuPrincipal(sc);
 			switch (opcionElegida) {
 			case 1:
-				this.crearDisco(arrayDiscos, sc);
+				this.crearDisco();
 				break;
 			case 2:
-				this.mostrarDiscos(arrayDiscos);
+				this.mostrarDiscos();
 				break;
 			case 3:
-				this.buscarDiscoPorTitulo(arrayDiscos, sc);
+				this.buscarDiscoPorTitulo();
 				break;
 			case 4:
-				this.buscarDiscoConMenosPistas(arrayDiscos);
+				this.buscarDiscoConMenosPistas();
 				break;
 			case 5:
-				this.buscarDiscoConMasPistas(arrayDiscos);
+				this.buscarDiscoConMasPistas();
 				break;
 			case 6:
-				this.grupoDiscosPorAutor(arrayDiscos, sc);
+				this.grupoDiscosPorAutor();
 				break;
 			case 7:
-				this.borrarDisco(arrayDiscos, sc);
+				this.borrarDisco();
 				break;
 			case 0:
-				System.out.println("\nHasta pronto!\n");
-				seguir = false;
+				System.out.print("¿Desea salir? (Sí/No) : ");
+				String salir = this.getSc().next();
+				if (salir.equalsIgnoreCase("si")) {
+					System.out.println("\nHasta pronto!\n");
+					this.finalizar();
+				}
 				break;
 			default:
 				System.out.println("\nOpcion incorrecta!\n");
@@ -66,16 +96,16 @@ public class MenuDiscos {
 		}
 	}
 
-	public void crearDisco(ArrayList<Disco> arrayDiscos, Scanner sc) {
+	public void crearDisco() {
 		System.out.print("Titulo ; ");
-		String titulo = sc.next();
+		String titulo = this.getSc().next();
 		System.out.print("Autor ; ");
-		String autor = sc.next();
+		String autor = this.getSc().next();
 		System.out.print("Numero de pistas ; ");
-		int pistas = sc.nextInt();
+		int pistas = this.getSc().nextInt();
 
 		Disco nuevoDisco = new Disco(titulo, autor, pistas);
-		arrayDiscos.add(nuevoDisco);
+		this.getArrayDiscos().add(nuevoDisco);
 	}
 
 	public void mostrarDisco(Disco discoActual) {
@@ -86,22 +116,19 @@ public class MenuDiscos {
 		System.out.println();
 	}
 
-	public void mostrarDiscos(ArrayList<Disco> arrayDiscos) {
-		if (!this.noHayDiscosQueMostrar(arrayDiscos)) {
-			for (Disco disco : arrayDiscos) {
-				this.mostrarDisco(disco);
-			}
-		}
+	public void mostrarDiscos() {
+		this.mostrarArrayDeDiscos(this.getArrayDiscos());
 	}
 
-	public void buscarDiscoPorTitulo(ArrayList<Disco> arrayDiscos, Scanner sc) {
+	public void buscarDiscoPorTitulo() {
 		Disco auxDisc = null;
 		System.out.print("Ingrese titulo ; ");
-		String tituloBuscado = sc.next();
-		if (!this.noHayDiscosQueMostrar(arrayDiscos)) {
-			for (Disco disco : arrayDiscos) {
+		String tituloABuscar = this.getSc().next();
+
+		if (!this.noHayDiscosQueMostrar(this.getArrayDiscos())) {
+			for (Disco disco : this.getArrayDiscos()) {
 				String tituloActual = disco.getTitulo();
-				if (tituloActual.equals(tituloBuscado)) {
+				if (tituloActual.equals(tituloABuscar)) {
 					auxDisc = disco;
 				}
 			}
@@ -112,61 +139,61 @@ public class MenuDiscos {
 		}
 	}
 
-	public void buscarDiscoConMenosPistas(ArrayList<Disco> arrayDiscos) {
+	public void buscarDiscoConMenosPistas() {
+
 		Disco auxDisc = null;
-		if (!this.noHayDiscosQueMostrar(arrayDiscos)) {
-			auxDisc = arrayDiscos.get(0);
-			for (Disco disco : arrayDiscos) {
+		if (!this.noHayDiscosQueMostrar(this.getArrayDiscos())) {
+			auxDisc = this.getArrayDiscos().get(0);
+			for (Disco disco : this.getArrayDiscos()) {
 				if (disco.getNumeroDePistas() < auxDisc.getNumeroDePistas()) {
 					auxDisc = disco;
 				}
 			}
-			if (!this.noHayDiscoQueMostrar(auxDisc)) {
-				this.mostrarDisco(auxDisc);
-			}
+			
+			this.mostrarDisco(auxDisc);
 		}
-
 	}
 
-	public void buscarDiscoConMasPistas(ArrayList<Disco> arrayDiscos) {
-		Disco auxDisc = null;
-		if (!this.noHayDiscosQueMostrar(arrayDiscos)) {
-			auxDisc = arrayDiscos.get(0);
-			for (Disco disco : arrayDiscos) {
+	public void buscarDiscoConMasPistas() {
+
+		if (!this.noHayDiscosQueMostrar(this.getArrayDiscos())) {
+			Disco auxDisc = null;
+			auxDisc = this.getArrayDiscos().get(0);
+			for (Disco disco : this.getArrayDiscos()) {
 				if (disco.getNumeroDePistas() > auxDisc.getNumeroDePistas()) {
 					auxDisc = disco;
 				}
 			}
-			if (!this.noHayDiscoQueMostrar(auxDisc)) {
-				this.mostrarDisco(auxDisc);
-			}
+			this.mostrarDisco(auxDisc);
 		}
 	}
 
-	public void grupoDiscosPorAutor(ArrayList<Disco> arrayDiscos, Scanner sc) {
+	public void grupoDiscosPorAutor() {
 
-		System.out.print("Ingrese autor : ");
-		String autor = sc.next();
+		if (!this.noHayDiscosQueMostrar(this.getArrayDiscos())) {
+			System.out.print("Ingrese autor : ");
+			String autor = this.getSc().next();
+			ArrayList<Disco> discosDeAutor = new ArrayList<>();
 
-		ArrayList<Disco> DiscosDeAutor = new ArrayList<>();
-		if (!this.noHayDiscosQueMostrar(arrayDiscos)) {
-			for (Disco disco : arrayDiscos) {
+			for (Disco disco : this.getArrayDiscos()) {
 				if (disco.getAutor().equals(autor)) {
-					DiscosDeAutor.add(disco);
+					discosDeAutor.add(disco);
 				}
 			}
-			if (!this.noHayDiscosQueMostrar(arrayDiscos)) {
-				this.mostrarDiscos(DiscosDeAutor);
+			if (!this.noHayDiscosQueMostrar(this.getArrayDiscos())) {
+				this.mostrarArrayDeDiscos(discosDeAutor);
 			}
 		}
 	}
 
-	public void borrarDisco(ArrayList<Disco> arrayDiscos, Scanner sc) {
-		Disco auxDisc = null;
-		System.out.print("Ingrese titulo ; ");
-		String tituloBuscado = sc.next();
-		if (!this.noHayDiscosQueMostrar(arrayDiscos)) {
-			for (Disco disco : arrayDiscos) {
+	public void borrarDisco() {
+
+		if (!this.noHayDiscosQueMostrar(this.getArrayDiscos())) {
+			Disco auxDisc = null;
+			System.out.print("Ingrese titulo ; ");
+			String tituloBuscado = this.getSc().next();
+
+			for (Disco disco : this.getArrayDiscos()) {
 				String tituloActual = disco.getTitulo();
 				if (tituloActual.equals(tituloBuscado)) {
 					auxDisc = disco;
@@ -175,6 +202,14 @@ public class MenuDiscos {
 			if (!this.noHayDiscoQueMostrar(auxDisc)) {
 				arrayDiscos.remove(auxDisc);
 				System.out.println("\nDisco borrado con exito !\n");
+			}
+		}
+	}
+
+	public void mostrarArrayDeDiscos(ArrayList<Disco> arrayDiscos) {
+		if (!this.noHayDiscosQueMostrar(arrayDiscos)) {
+			for (Disco disco : arrayDiscos) {
+				this.mostrarDisco(disco);
 			}
 		}
 	}

@@ -15,7 +15,8 @@ public class MainDiscos {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		ArrayList<Disco> arrayDiscos = new ArrayList<>();
-		MenuDiscos menuDiscos = new MenuDiscos();		
-		menuDiscos.menuPrincipal(sc, arrayDiscos);
+		MenuDiscos menuDiscos = new MenuDiscos(sc, arrayDiscos);		
+		menuDiscos.iniciar();
+		sc.close();
 	}
 }
