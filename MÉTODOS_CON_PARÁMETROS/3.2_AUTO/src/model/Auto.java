@@ -6,6 +6,7 @@
 
 //Una vez hecho esto, crear un Main donde se carguen tres autos y cuantos minutos van a andar.
 //Mostrar que tan lejos llegó cada auto, y cuanto hubiera tardado cada uno en recorrer esa distancia con turbo.
+package model;
 
 public class Auto {
 	
@@ -13,7 +14,7 @@ public class Auto {
 	private char tipoTurbo;
 	private String modelo;
 	
-	Auto(String modelo, double velocidadKmph, char tipoTurbo){
+	public Auto(String modelo, double velocidadKmph, char tipoTurbo){
 		this.modelo = modelo;
 		this.velocidadKmph = velocidadKmph;
 		this.tipoTurbo = tipoTurbo;

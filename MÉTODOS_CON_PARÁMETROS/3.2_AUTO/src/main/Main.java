@@ -6,6 +6,9 @@
 
 //Una vez hecho esto, crear un Main donde se carguen tres autos y cuantos minutos van a andar.
 //Mostrar que tan lejos llegó cada auto, y cuanto hubiera tardado cada uno en recorrer esa distancia con turbo.
+package main;
+
+import model.Auto;
 
 public class Main {
 

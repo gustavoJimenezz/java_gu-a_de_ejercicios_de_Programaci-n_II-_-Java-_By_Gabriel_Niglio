@@ -1,3 +1,4 @@
+package model;
 //Pepe
 
 //Crear la clase Pepe, el mismo tiene que tener un número preferido (Es el 21).

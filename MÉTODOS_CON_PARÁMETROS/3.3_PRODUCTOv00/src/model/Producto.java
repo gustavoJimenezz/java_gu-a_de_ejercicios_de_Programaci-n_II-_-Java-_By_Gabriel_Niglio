@@ -18,6 +18,7 @@
 //Luego el cliente selecciona la cantidad que va a comprar del segundo producto (pero esta vez
 //con tarjeta de crédito, por ende no se debe validar si tiene suficiente efectivo), una vez cargada
 //la cantidad se tiene que mostrar cuanto ganó la tienda por esta última venta.
+package model;
 
 public class Producto {
 
@@ -25,7 +26,7 @@ public class Producto {
 	private double costo;
 	private String nombre;
 	
-	Producto(double precio, double costo, String nombre){
+	public Producto(double precio, double costo, String nombre){
 		this.precio = precio;
 		this.costo = costo;
 		this.nombre = nombre;
