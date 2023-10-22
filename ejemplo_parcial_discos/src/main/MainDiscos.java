@@ -17,6 +17,7 @@ public class MainDiscos {
 		ArrayList<Disco> arrayDiscos = new ArrayList<>();
 		MenuDiscos menuDiscos = new MenuDiscos(sc, arrayDiscos);		
 		menuDiscos.iniciar();
+		System.out.println("Programa finalizado !\n");
 		sc.close();
 	}
 }
